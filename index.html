@@ -1,196 +1,613 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Marti the Analyst – Data Automation & Analytics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Data pipelines, Excel cleanup, and automation for small businesses." />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-light: #111827;
+      --accent: #38bdf8;
+      --accent-soft: #0ea5e9;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #1f2937;
+      --border: #374151;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #1e293b, #020617);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-<html>
-	<head>
-		<title>Marti The Analyst 👩🏽‍💻</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+    /* Layout */
+    header, main, footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem;
+    }
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+    /* Nav */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+    }
+    .nav-brand {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.9rem;
+    }
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
 
-				<!-- Intro -->
-					<div id="intro">
-						<img src="images/me3.png" class="main_image" width='250' height='250'>
-						<h1><span class="Mcolor">H</span>i!<br />
-							<span class="Mcolor">I</span>'m <span class="Mcolor">M</span>arti</h1>
-						<p></h2><b>Data Automation & Analytics for Small Businesses</b>
-					</br>
-						<h7>I build automated data pipelines, clean messy Excel files, and streamline reporting so you can make decisions faster.</h7></p>
-						<br></br>
-						<ul class="actions">
-							<li><a href="#main" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+    /* Hero */
+    .hero {
+      padding: 3rem 0 2.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw + 1.5rem, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .hero-highlight {
+      color: var(--accent-soft);
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 32rem;
+      margin-bottom: 1.75rem;
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+      color: #0b1120;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(56, 189, 248, 0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--muted);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent-soft);
+      color: var(--accent-soft);
+    }
+    .hero-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
 
-				<!-- Header -->
-					<header id="header">
-						<a href="https://www.linkedin.com/in/feleshiawest/" class="logo"></a>
-					</header>
+    .hero-card {
+      background: linear-gradient(145deg, #020617, #0f172a);
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1.5rem 1.4rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    }
+    .hero-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--accent-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .hero-card-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .hero-card-list li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+    .hero-card-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+    }
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">Projects</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/feleshiawest/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							<li><a href="https://github.com/feleshia33" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+    /* Sections */
+    section {
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(31, 41, 55, 0.8);
+    }
+    .section-header {
+      margin-bottom: 1.75rem;
+    }
+    .section-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 32rem;
+    }
 
-				<!-- Main -->
-					<div id="main">
+    /* Services */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    @media (max-width: 900px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 640px) {
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card {
+      background: var(--card);
+      border-radius: 0.9rem;
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.2rem;
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .card-list {
+      list-style: none;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .card-list li {
+      margin-bottom: 0.35rem;
+    }
 
-						<!-- Featured Post -->
-							<article class="post featured">
-									<header>
-										<h2><a href="https://github.com/feleshia33/SQL/blob/master/Tennis.sql">TENNIS STATS DATA EXPLORATION WITH SQL<br /></a></h2>
-									</header>
-									<a href="https://github.com/feleshia33/SQL/blob/master/Tennis.sql" class="image fit"><img src="images/tennisstats.png" alt="" /></a>
-									<p class="intro">In this project I took sample tennis data and extract meaning reporting data.</p>
-									<p class="intro">Employed a range of SQL queries to retrieve relevant data from the database.</p>
-									<p class="intro">Utilized MySQL Workbench as the primary tool for executing these queries.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/feleshia33/SQL/blob/master/Tennis.sql" class="button">View Project</a></li>
-									</ul>
-							</article>			
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										<h2><a href="https://github.com/feleshia33/Excel/blob/master/Excel%20Project%20Dataset.xlsx">EXCEL DASHBOARD<br /></a></h2>
-									</header>
-									<a href="https://github.com/feleshia33/Excel/blob/master/Excel%20Project%20Dataset.xlsx" class="image fit"><img src="images/EXCEL.png" alt="" /></a>
-									<p>In this project I built excel dashboard for a bike sales.</p>
-									<p>Performed data cleansing and review, eliminating duplicate entries, updating column descriptions and cells, and removing irrelevant data.</p>
-									<p>Generated reports on bike sales based on average income, commuting distance categorized by mileage ranges, education level per rider, and age brackets per rider.</p>
-									<p>Developed a user-friendly slider for effortless data manipulation, ensuring easy accessibility and frequent updates for business purposes.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/feleshia33/Excel/blob/master/Excel%20Project%20Dataset.xlsx" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://public.tableau.com/app/profile/marti4247">TABLEAU DASHBOARDS<br /></a></h2>
-									</header>
-									<a href="https://public.tableau.com/app/profile/marti4247" class="image fit"><img src="images/Netflix.png" alt="" /></a>
-									<p>In this project I built a tableau dashboard for Netflix movies and shows, by Country, Rating, Cast, Catergory.</p>
-									<p> Analyzed a dataset of 8,807 rows containing movie and TV show information from various directors spanning two years.</p>
-									<p> Generated eight distinct charts based on different criteria such as category type, year of release, cast, director, statistics, country, and rating. These charts aided in determining the shows with the highest number of shows per cast members, directors, and categories, as well as the annual production count.</p>
-									<p> International movies surpassed dramas with a count of 1,927 compared to 1,623, while the United States took the lead with a total of 176,031 minutes.</p>
-									<p> TV-MA (mature content) rating showed a higher prevalence with 2,014 instances, as opposed to TV-14 (unsuitable for viewers under 14 years old) with 1,693 occurrences.</p>
-									<ul class="actions special">
-										<li><a href="https://public.tableau.com/app/profile/marti4247" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/feleshia33/Python_projects/blob/main/rock_paper_scissors.py">ROCK PAPER SCISSORS w/ PYTHON<br /></a></h2>
-									</header>
-									<a href="https://github.com/feleshia33/Python_projects/blob/main/rock_paper_scissors.py" class="image fit"><img src="images/rps.png" alt="" /></a>
-									<p>In this project I built a simple rock, paper, scissor game.</p>
-									<p>Developed a Python game that can be played by a single player, incorporating user input.
-									<p>Provided a set of instructions, allowed the player to choose their character, determined the sequence of plays, identified the winner and loser, and offered the choice to play again.</p>
-									<p>Utilized the random.choice function to generate the computer's choice in the game.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/feleshia33/Python_projects/blob/main/rock_paper_scissors.py" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/feleshia33/Python_projects/blob/main/budget_calculator.py">BUDGET CALCULATOR w/ PYTHON <br /></a></h2>
-									</header>
-									<a href="https://github.com/feleshia33/Python_projects/blob/main/budget_calculator.py" class="image fit"><img src="images/expense_cal.png" alt="" /></a>
-									<p>In this project I built a budget calculator with input from the user.</p>
-									<p>Created a budget calculator in Python that prompts the user for input options and computes the overall budget.</p>
-									<p> Verifies that the input consists of positive numbers.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/feleshia33/Python_projects/blob/main/budget_calculator.py" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/feleshia33/Excel/blob/master/Saxon%20Municipal%20Government%20Budget.xlsx">SAXON MUNICIPAL GOVERNMENT BUDGET breakdown<br /></a></h2>
-									</header>
-									<a href="https://github.com/feleshia33/Excel/blob/master/Saxon%20Municipal%20Government%20Budget.xlsx" class="image fit"><img src="images/MunicipalGovernmentBudget.png" alt="" /></a>
-									<p>In this project I build a budget breakdown for a fictitious governmental entity.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/feleshia33/Excel/blob/master/Saxon%20Municipal%20Government%20Budget.xlsx" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://public.tableau.com/app/profile/marti4247/viz/SuicidesDeaths1985-2016/SuicidesDeaths1985-2016?publish=yes">Suicide Deaths 1985-2016 Tableau Visualization<br /></a></h2>
-									</header>
-									<a href="https://public.tableau.com/app/profile/marti4247/viz/SuicidesDeaths1985-2016/SuicidesDeaths1985-2016?publish=yes" class="image fit"><img src="images/SuicidesDeaths1985-2016.png" alt="" /></a>
-									<p>In this project I built a tableau dashboard for suicide deaths from 1985 to 2016 by country, sex, age and population.</p>
-									<ul class="actions special">
-										<li><a href="https://public.tableau.com/app/profile/marti4247/viz/SuicidesDeaths1985-2016/SuicidesDeaths1985-2016?publish=yes" class="button">View Project</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://github.com/feleshia33/SQL/blob/master/countries.txt">COUNTRY DATA EXPLORATION WITH SQL<br /></a></h2>
-									</header>
-									<a href="https://github.com/feleshia33/SQL/blob/master/countries.txt" class="image fit"><img src="images/DataCamp.png" alt="" /></a>
-									<p>In this project I took sample country data and extract meaning reporting data.</p>
-									<p>Employed a range of SQL queries from DataCamp to retrieve relevant data from the database.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/feleshia33/SQL/blob/master/countries.txt" class="button">View Project</a></li>
-									</ul>
-								</article>
-							</section>
-					</div>
+    /* About */
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 2rem;
+    }
+    @media (max-width: 800px) {
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .pill {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
 
-				<!-- Footer -->
-					<footer id="footer">
-						<section class="split contact">
-							<section class="alt">
-								<h3>Location</h3>
-								<p>Somewhere in Texas</p>
-							</section>
-							<!-- <section>
-								<h3>Phone</h3>
-								<p><a href="#">(512) 938-9435</a></p>
-							</section> -->
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">feleshiawest@gmail.com</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="https://www.linkedin.com/in/feleshiawest/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-									<li><a href="https://github.com/feleshia33" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
+    /* Pricing */
+    .pricing-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+    @media (max-width: 900px) {
+      .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 640px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .price-tag {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--accent-soft);
+    }
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Marti The Analyst 👩🏽‍💻 DBA: NNM - No Name Media Channel </li><li>Design: <a href="https://html5up.net">THANKS TO:HTML5 UP</a></li></ul>
-					</div>
+    /* Contact */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
+      gap: 2rem;
+    }
+    @media (max-width: 800px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .contact-card {
+      background: var(--card);
+      border-radius: 0.9rem;
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .contact-card strong {
+      color: var(--text);
+    }
+    form {
+      display: grid;
+      gap: 0.75rem;
+    }
+    label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+      display: block;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.55rem 0.6rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: #020617;
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-soft);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+    }
 
-			</div>
+    /* Footer */
+    footer {
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(31, 41, 55, 0.8);
+      padding-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="nav-brand">Marti the Analyst</div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+        <!-- Optional: link to your existing portfolio page -->
+        <!-- <a href="portfolio.html">Portfolio</a> -->
+      </div>
+    </nav>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    <section class="hero">
+      <div>
+        <h1 class="hero-title">
+          Data pipelines, Excel cleanup, and <span class="hero-highlight">automation for small businesses.</span>
+        </h1>
+        <p class="hero-subtitle">
+          I help business owners turn messy spreadsheets and scattered data into reliable, automated reporting—
+          so you spend less time wrestling with Excel and more time making decisions.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Book a free 30‑minute consult</a>
+          <a href="#services" class="btn btn-outline">View services</a>
+        </div>
+        <p class="hero-meta">
+          Based in Texas • 20+ years in accounting and analytics • Focused on practical, business‑ready solutions
+        </p>
+      </div>
 
-	</body>
+      <aside class="hero-card">
+        <div class="hero-card-title">What I typically do for clients</div>
+        <ul class="hero-card-list">
+          <li>• Build repeatable data pipelines from Excel, CSV, databases, and cloud storage.</li>
+          <li>• Clean and standardize messy spreadsheets (duplicates, formats, formulas, structure).</li>
+          <li>• Automate recurring reports with SQL, Python, and Power BI.</li>
+          <li>• Design simple dashboards that answer “What’s happening in my business?” at a glance.</li>
+        </ul>
+        <div class="hero-card-badge">
+          From “I have 12 messy files” to “I get a clean report every Monday.”
+        </div>
+      </aside>
+    </section>
+  </header>
+
+  <main>
+    <!-- Services -->
+    <section id="services">
+      <div class="section-header">
+        <div class="section-kicker">Services</div>
+        <h2 class="section-title">How I can help your business</h2>
+        <p class="section-subtitle">
+          You don’t need a full‑time data team. You need reliable, automated workflows that match how you already work.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3 class="card-title">Data pipelines & ETL</h3>
+          <p class="card-subtitle">Connect, combine, and refresh your data without manual copy‑paste.</p>
+          <ul class="card-list">
+            <li>• Build pipelines from Excel, CSV, SQL databases, and cloud storage.</li>
+            <li>• Design ETL workflows (extract, transform, load) tailored to your business.</li>
+            <li>• Schedule automated refreshes for daily, weekly, or monthly reporting.</li>
+            <li>• Document the process so you know exactly how your data flows.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 class="card-title">Excel cleanup & structure</h3>
+          <p class="card-subtitle">Turn “Franken‑spreadsheets” into clean, reliable files.</p>
+          <ul class="card-list">
+            <li>• Remove duplicates, fix broken formulas, and standardize formats.</li>
+            <li>• Restructure tabs so data is easy to filter, pivot, and analyze.</li>
+            <li>• Create templates your team can reuse without breaking anything.</li>
+            <li>• Optional: convert key Excel logic into automated scripts or queries.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 class="card-title">Reporting & automation</h3>
+          <p class="card-subtitle">Get the same report every time—without manual effort.</p>
+          <ul class="card-list">
+            <li>• Build Power BI dashboards and automated Excel reports.</li>
+            <li>• Use Python/SQL to generate recurring summaries and KPIs.</li>
+            <li>• Set up scheduled delivery (email, shared drive, or cloud workspace).</li>
+            <li>• Align metrics with how you actually run your business, not just “what’s possible.”</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-header">
+        <div class="section-kicker">About</div>
+        <h2 class="section-title">Who I work best with</h2>
+        <p class="section-subtitle">
+          I’m Marti, an analyst with an accounting, IT, and MBA background. I specialize in helping small and growing
+          businesses tame their data and automate the boring parts.
+        </p>
+      </div>
+
+      <div class="about-layout">
+        <div>
+          <p style="font-size:0.95rem; color:var(--muted); margin-bottom:0.75rem;">
+            If your world is invoices, inventory, payroll, or operations—and your “system” is mostly Excel,
+            shared folders, and email—I’m comfortable in that reality. I translate it into structured data and
+            automation without forcing you into tools you don’t need.
+          </p>
+          <p style="font-size:0.95rem; color:var(--muted); margin-bottom:0.75rem;">
+            My approach is simple: understand how you actually work, design a lean solution, and document it so
+            you’re not dependent on me forever. I’d rather build something you can own than something only a
+            specialist can maintain.
+          </p>
+          <div class="pill-row">
+            <span class="pill">20+ years in accounting & operations</span>
+            <span class="pill">Excel, SQL, Python, Power BI</span>
+            <span class="pill">Small business & back‑office workflows</span>
+            <span class="pill">Texas‑based, remote‑friendly</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Typical engagement</h3>
+          <p class="card-subtitle">
+            Most projects start small and grow once you see the impact.
+          </p>
+          <ul class="card-list">
+            <li>• 1–2 discovery calls to understand your current files and processes.</li>
+            <li>• A short proposal with scope, timeline, and estimated cost.</li>
+            <li>• Implementation in phases, so you can test and adjust as we go.</li>
+            <li>• Handover with documentation, plus optional ongoing support.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing">
+      <div class="section-header">
+        <div class="section-kicker">Pricing</div>
+        <h2 class="section-title">Transparent, project‑based pricing</h2>
+        <p class="section-subtitle">
+          Every business is different, but here are typical ranges so you know what to expect before we talk.
+        </p>
+      </div>
+
+      <p class="pricing-note">
+        Final pricing depends on scope and complexity. I’ll always provide a clear estimate before we start.
+      </p>
+
+      <div class="pricing-grid">
+        <article class="card">
+          <div class="price-tag">Excel Cleanup Package • from $150</div>
+          <p class="card-subtitle">For 1–3 key files you use regularly.</p>
+          <ul class="card-list">
+            <li>• Clean and standardize structure and formulas.</li>
+            <li>• Create a reusable template version.</li>
+            <li>• Short walkthrough so you know how it works.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="price-tag">Data Pipeline Setup • from $450</div>
+          <p class="card-subtitle">For recurring reports from multiple sources.</p>
+          <ul class="card-list">
+            <li>• Design and build a basic ETL pipeline.</li>
+            <li>• Automate refresh and output (Excel, CSV, or dashboard).</li>
+            <li>• Documentation of data flow and logic.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="price-tag">Ongoing Automation Support • custom</div>
+          <p class="card-subtitle">For businesses that want a “data partner” on call.</p>
+          <ul class="card-list">
+            <li>• Monthly hours for tweaks, new reports, and maintenance.</li>
+            <li>• Priority response for urgent data issues.</li>
+            <li>• Flexible based on your volume and needs.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-header">
+        <div class="section-kicker">Contact</div>
+        <h2 class="section-title">Ready to stop wrestling with your data?</h2>
+        <p class="section-subtitle">
+          Share a few details about your current setup, and I’ll respond with next steps and a rough timeline.
+        </p>
+      </div>
+
+      <div class="contact-layout">
+        <div>
+          <!-- If you don't want a real form, you can remove this and just keep the contact card -->
+          <form action="mailto:your.email@domain.com" method="post" enctype="text/plain">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div>
+              <label for="business">Business / organization</label>
+              <input id="business" name="business" type="text" placeholder="Optional" />
+            </div>
+            <div>
+              <label for="message">What’s your current data situation?</label>
+              <textarea id="message" name="message" placeholder="Example: We have 10 Excel files we use weekly for sales and inventory, and we want a single clean report."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send details</button>
+          </form>
+        </div>
+
+        <div class="contact-card">
+          <p>
+            <strong>Prefer email or a call?</strong><br />
+            You can reach me directly:
+          </p>
+          <p style="margin-top:0.6rem;">
+            <strong>Email:</strong> your.email@domain.com<br />
+            <!-- Replace with your real email -->
+            <strong>Location:</strong> Texas, USA (remote‑friendly)
+          </p>
+          <p style="margin-top:0.6rem;">
+            If you’d like to share files for review, I’ll send you a secure link after our first conversation.
+          </p>
+          <p style="margin-top:0.6rem;">
+            Optional: add a link to your calendar here:<br />
+            <a href="#" style="color:var(--accent-soft);">Schedule a call via Calendly</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Marti the Analyst. All rights reserved.</div>
+    <div class="footer-links">
+      <span>Data automation & analytics for small businesses.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
-
-
-
-
