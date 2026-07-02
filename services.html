@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Services – Marti the Analyst</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      margin: 0;
+      padding: 0;
+    }
+    header, main, footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    a { color: #38bdf8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Nav */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+    }
+    .nav-links a {
+      margin-left: 1rem;
+      color: #9ca3af;
+    }
+    .nav-links a:hover { color: #38bdf8; }
+
+    /* Section */
+    section {
+      padding: 2rem 0;
+      border-top: 1px solid #1f2937;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #9ca3af;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+    }
+
+    /* Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #1f2937;
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      border: 1px solid #374151;
+    }
+    .card h3 {
+      margin-bottom: 0.5rem;
+    }
+    .card ul {
+      color: #9ca3af;
+      font-size: 0.9rem;
+      list-style: none;
+      padding-left: 0;
+    }
+    .card ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    footer {
+      color: #9ca3af;
+      font-size: 0.8rem;
+      padding-top: 2rem;
+      border-top: 1px solid #1f2937;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <nav class="nav">
+    <div><strong>Marti the Analyst</strong></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <h1>Services</h1>
+  <p class="subtitle">
+    I help small businesses automate reporting, clean messy spreadsheets, and build reliable data pipelines.
+  </p>
+</header>
+
+<main>
+
+  <section>
+    <h2>Data Pipelines & ETL</h2>
+    <p class="subtitle">Automate how your data flows, refreshes, and connects.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Pipeline Setup</h3>
+        <ul>
+          <li>Connect Excel, CSV, SQL, and cloud sources</li>
+          <li>Build ETL workflows (extract, transform, load)</li>
+          <li>Automated refresh schedules</li>
+          <li>Documentation included</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Data Cleaning</h3>
+        <ul>
+          <li>Standardize formats</li>
+          <li>Remove duplicates</li>
+          <li>Fix broken logic</li>
+          <li>Prepare for dashboards</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Excel Cleanup & Structure</h2>
+    <p class="subtitle">Turn chaotic spreadsheets into clean, reliable tools.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>File Cleanup</h3>
+        <ul>
+          <li>Fix formulas & references</li>
+          <li>Restructure tabs</li>
+          <li>Create reusable templates</li>
+          <li>Improve performance</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Automation</h3>
+        <ul>
+          <li>Macros & scripts</li>
+          <li>Scheduled reports</li>
+          <li>Excel → Power BI conversion</li>
+          <li>Python/SQL automation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Reporting & Dashboards</h2>
+    <p class="subtitle">Clear insights delivered automatically.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Power BI Dashboards</h3>
+        <ul>
+          <li>Sales, inventory, finance, operations</li>
+          <li>Custom KPIs</li>
+          <li>Scheduled refresh</li>
+          <li>Cloud or local deployment</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Automated Reports</h3>
+        <ul>
+          <li>Weekly/monthly summaries</li>
+          <li>Email delivery</li>
+          <li>Excel/PDF output</li>
+          <li>Fully documented</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Marti the Analyst
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
